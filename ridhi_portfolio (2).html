@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ridhi Kumari | AI & ML Student</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #1a1a24;
+    --card: #14141e;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #f0eff8;
+    --muted: #888899;
+    --accent: #a78bfa;
+    --accent2: #60efbc;
+    --accent3: #f472b6;
+    --glow: rgba(167,139,250,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.2rem;
+    color: var(--text); text-decoration: none;
+    letter-spacing: -0.03em;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.9rem; font-weight: 400;
+    transition: color 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* ---- SECTIONS ---- */
+  section { padding: 7rem 4rem; max-width: 1100px; margin: 0 auto; }
+
+  /* ---- HERO ---- */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding-top: 8rem; padding-bottom: 4rem;
+    position: relative;
+  }
+  .hero-eyebrow {
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.15em;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 32px; height: 1px; background: var(--accent);
+  }
+  h1.hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.0;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+  }
+  h1.hero-name span {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 1.1rem; color: var(--muted);
+    max-width: 520px; margin-bottom: 2.5rem;
+    line-height: 1.75;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    padding: 0.75rem 1.75rem;
+    background: var(--accent);
+    color: #0a0a0f; font-weight: 600;
+    border: none; border-radius: 6px;
+    text-decoration: none; font-size: 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer; transition: opacity 0.2s, transform 0.15s;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-outline {
+    padding: 0.75rem 1.75rem;
+    background: transparent;
+    color: var(--text); font-weight: 400;
+    border: 0.5px solid var(--border2);
+    border-radius: 6px; text-decoration: none;
+    font-size: 0.9rem; font-family: 'DM Sans', sans-serif;
+    cursor: pointer; transition: border-color 0.2s, transform 0.15s;
+    letter-spacing: 0.01em;
+  }
+  .btn-outline:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    border-top: 0.5px solid var(--border);
+    padding-top: 2rem;
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem; font-weight: 700;
+    color: var(--text); letter-spacing: -0.04em;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.15rem; }
+
+  /* ---- VIDEO BACKGROUND ---- */
+  .video-bg-wrap {
+    position: fixed; inset: 0; z-index: -2; pointer-events: none;
+    overflow: hidden;
+  }
+  .video-bg-wrap video {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.18;
+    filter: saturate(1.4) hue-rotate(10deg);
+  }
+  /* dark overlay so text stays readable */
+  .video-overlay {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      rgba(10,10,15,0.55) 0%,
+      rgba(10,10,15,0.35) 40%,
+      rgba(10,10,15,0.75) 100%
+    );
+  }
+
+  /* ---- HEADINGS ---- */
+  .section-label {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--accent);
+  }
+  h2.section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700; letter-spacing: -0.03em;
+    color: var(--text); margin-bottom: 3rem;
+    line-height: 1.15;
+  }
+
+  /* ---- ABOUT ---- */
+  .about-grid {
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 5rem; align-items: start;
+  }
+  .about-text p { color: var(--muted); margin-bottom: 1rem; font-size: 1rem; }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+
+  .skills-block { display: flex; flex-direction: column; gap: 1rem; }
+  .skill-row label {
+    font-size: 0.78rem; color: var(--muted); letter-spacing: 0.06em;
+    display: flex; justify-content: space-between;
+    margin-bottom: 0.4rem;
+  }
+  .skill-bar {
+    height: 3px; background: var(--bg3); border-radius: 2px; overflow: hidden;
+  }
+  .skill-fill {
+    height: 100%; border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    animation: fillBar 1.2s ease forwards;
+    transform-origin: left;
+  }
+  @keyframes fillBar { from { width: 0 } }
+
+  /* ---- EXPERIENCE ---- */
+  .exp-timeline { display: flex; flex-direction: column; gap: 0; }
+  .exp-item {
+    display: grid; grid-template-columns: 160px 1fr;
+    gap: 2rem; padding: 2rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .exp-item:first-child { border-top: 0.5px solid var(--border); }
+  .exp-date { font-size: 0.8rem; color: var(--muted); padding-top: 0.15rem; line-height: 1.5; }
+  .exp-org {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em;
+    color: var(--accent2); text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+  .exp-role {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem; font-weight: 600;
+    color: var(--text); margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+  .exp-points { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
+  .exp-points li { font-size: 0.9rem; color: var(--muted); padding-left: 1rem; position: relative; }
+  .exp-points li::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
+
+  /* ---- PROJECTS ---- */
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .project-card {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .project-card:hover { border-color: var(--border2); transform: translateY(-3px); }
+  .project-card:hover::before { opacity: 1; }
+  .project-tag {
+    display: inline-block; margin-bottom: 1rem;
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500;
+    background: rgba(167,139,250,0.08);
+    padding: 0.25rem 0.65rem; border-radius: 4px;
+  }
+  .project-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem; font-weight: 600;
+    color: var(--text); margin-bottom: 0.65rem;
+    letter-spacing: -0.02em; line-height: 1.3;
+  }
+  .project-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+  .project-badge {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    margin-top: 1.25rem;
+    font-size: 0.7rem; font-weight: 500;
+    color: var(--accent2); letter-spacing: 0.05em;
+  }
+  .project-badge::before {
+    content: ''; display: block;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent2);
+  }
+
+  /* ---- SKILLS TAGS ---- */
+  .skills-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .tag {
+    padding: 0.4rem 0.9rem; border-radius: 4px;
+    font-size: 0.8rem; font-weight: 400; color: var(--muted);
+    border: 0.5px solid var(--border);
+    background: var(--card);
+    letter-spacing: 0.02em;
+  }
+  .tag.highlight { color: var(--accent); border-color: rgba(167,139,250,0.25); background: rgba(167,139,250,0.06); }
+
+  /* ---- ACHIEVEMENT ---- */
+  .achievement-card {
+    background: var(--card); border: 0.5px solid var(--border);
+    border-radius: 12px; padding: 1.5rem 1.75rem;
+    display: flex; gap: 1.25rem; align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .achievement-card:hover { border-color: var(--border2); }
+  .ach-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .ach-icon.gold { background: rgba(250,199,117,0.12); }
+  .ach-icon.blue { background: rgba(96,239,188,0.10); }
+  .ach-icon.purple { background: rgba(167,139,250,0.10); }
+  .ach-icon.pink { background: rgba(244,114,182,0.10); }
+  .ach-title { font-weight: 500; color: var(--text); font-size: 0.9rem; margin-bottom: 0.2rem; }
+  .ach-desc { font-size: 0.8rem; color: var(--muted); }
+
+  /* ---- CONTACT ---- */
+  #contact { text-align: center; }
+  .contact-links {
+    display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    border: 0.5px solid var(--border);
+    border-radius: 6px; background: var(--card);
+    color: var(--muted); text-decoration: none;
+    font-size: 0.85rem; transition: color 0.2s, border-color 0.2s;
+  }
+  .contact-link:hover { color: var(--text); border-color: var(--border2); }
+  .contact-link svg { width: 15px; height: 15px; fill: currentColor; }
+
+  /* ---- FOOTER ---- */
+  footer {
+    border-top: 0.5px solid var(--border);
+    text-align: center; padding: 2rem 4rem;
+    font-size: 0.8rem; color: var(--muted);
+  }
+  footer span { color: var(--accent); }
+
+  /* ---- SCROLLBAR ---- */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    h1.hero-name { font-size: 2.8rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="video-bg-wrap">
+  <video autoplay muted loop playsinline>
+    <source src="bg-video.mp4" type="video/mp4">
+  </video>
+</div>
+<div class="video-overlay"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">RK<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-eyebrow">B.Tech CSE · AI & ML · Greater Noida</div>
+  <h1 class="hero-name">Ridhi<br><span>Kumari.</span></h1>
+  <p class="hero-sub">
+    Computer Science student specialising in AI & Machine Learning.
+    Aspiring Data Scientist — turning raw data into decisions,
+    and problems into products.
+  </p>
+  <div class="hero-ctas">
+    <a href="mailto:ridhikumari516@gmail.com" class="btn-primary">Get in Touch</a>
+    <a href="https://github.com/ridhi402" target="_blank" class="btn-outline">GitHub ↗</a>
+    <a href="https://linkedin.com/in/ridhikumari516" target="_blank" class="btn-outline">LinkedIn ↗</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">Top 130</div>
+      <div class="stat-label">Smart India Hackathon 2025<br>out of 10,000+ teams</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">10+</div>
+      <div class="stat-label">Technical events<br>organised</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">200+</div>
+      <div class="stat-label">Students mentored<br>& reached</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">50+</div>
+      <div class="stat-label">LeetCode &<br>GFG problems solved</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About Me</div>
+  <h2 class="section-title">Driven by data,<br>guided by curiosity.</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a third-year <strong>B.Tech Computer Science student</strong> at IEC College of Engineering & Technology (2024–2028), specialising in Artificial Intelligence & Machine Learning.
+      </p>
+      <p>
+        My journey in tech is driven by a passion for <strong>data-driven thinking</strong> — I love uncovering stories hidden in datasets and building tools that make a real difference. I've developed a strong foundation in Python, exploratory data analysis, and algorithmic problem-solving.
+      </p>
+      <p>
+        Beyond academics, I'm a <strong>community builder</strong> — serving as a core team member in both GDG on Campus and GeeksforGeeks IEC chapters, I've organised 10+ events, mentored juniors, and led peer-learning sessions for 100+ students.
+      </p>
+      <p>
+        Currently exploring: machine learning concepts, open-source contributions, and building reproducible data science workflows.
+      </p>
+    </div>
+    <div>
+      <p style="font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:1.25rem; font-weight:500;">Proficiency</p>
+      <div class="skills-block">
+        <div class="skill-row">
+          <label>Python <span>Strong</span></label>
+          <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+        </div>
+        <div class="skill-row">
+          <label>Data Analysis (Pandas/NumPy) <span>Beginner+</span></label>
+          <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+        </div>
+        <div class="skill-row">
+          <label>Data Visualisation (Matplotlib) <span>Beginner+</span></label>
+          <div class="skill-bar"><div class="skill-fill" style="width:55%"></div></div>
+        </div>
+        <div class="skill-row">
+          <label>Git & GitHub <span>Comfortable</span></label>
+          <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+        </div>
+        <div class="skill-row">
+          <label>Machine Learning (Conceptual) <span>Learning</span></label>
+          <div class="skill-bar"><div class="skill-fill" style="width:45%"></div></div>
+        </div>
+        <div class="skill-row">
+          <label>HTML / CSS <span>Basic</span></label>
+          <div class="skill-bar"><div class="skill-fill" style="width:40%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Experience & Leadership</div>
+  <h2 class="section-title">Building communities,<br>shaping futures.</h2>
+  <div class="exp-timeline">
+    <div class="exp-item">
+      <div>
+        <div class="exp-date">Jan 2025 – Present</div>
+        <div class="exp-org">GDG on Campus · IEC</div>
+      </div>
+      <div>
+        <div class="exp-role">Core Team Member</div>
+        <ul class="exp-points">
+          <li>Planned and executed 6+ technical workshops & hackathons, growing active community membership by 25%.</li>
+          <li>Led campus outreach drives and peer learning sessions on AI/ML, Cloud, and Flutter for 100+ students.</li>
+          <li>Represented GDG IEC at regional developer events, building professional networks and sharing industry insights.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div>
+        <div class="exp-date">Jan 2026 – Present</div>
+        <div class="exp-org">GeeksforGeeks · IEC</div>
+      </div>
+      <div>
+        <div class="exp-role">Core Team Member</div>
+        <ul class="exp-points">
+          <li>Organised and judged 4+ internal coding contests, boosting placement-readiness among 200+ participants.</li>
+          <li>Mentored juniors on DSA and competitive programming; helped students collectively solve 300+ problems.</li>
+          <li>Produced technical articles and event write-ups published on the GeeksforGeeks platform, reaching 500+ readers.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Projects</div>
+  <h2 class="section-title">Things I've built.</h2>
+  <div class="projects-grid" style="grid-template-columns: repeat(2, 1fr);">
+    <div class="project-card">
+      <div class="project-tag">Python · OOP</div>
+      <h3>Student Grade Calculator</h3>
+      <p>CLI application using OOP and file I/O to automate GPA computation for 50+ students — reduced manual effort by 80% with robust exception handling and data validation.</p>
+      <div class="project-badge">2025</div>
+    </div>
+    <div class="project-card" style="border-color: rgba(167,139,250,0.25);">
+      <div class="project-tag" style="background:rgba(244,114,182,0.1); color:var(--accent3);">Hackathon · National</div>
+      <h3>Smart India Hackathon 2025</h3>
+      <p>Collaborated in a 6-member team to design a prototype addressing a government problem statement. Advanced to top 130 teams nationally out of 10,000+ submissions within a 36-hour sprint.</p>
+      <div class="project-badge" style="color:var(--accent3);">🏆 Top 130 Nationally</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Technical Skills</div>
+  <h2 class="section-title">My toolkit.</h2>
+  <div style="display:flex; flex-direction:column; gap:2rem;">
+    <div>
+      <p style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:1rem;">Languages</p>
+      <div class="skills-tags">
+        <span class="tag highlight">Python</span>
+        <span class="tag">C (fundamentals)</span>
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:1rem;">Libraries & Tools</p>
+      <div class="skills-tags">
+        <span class="tag highlight">NumPy</span>
+        <span class="tag highlight">Pandas</span>
+        <span class="tag highlight">Matplotlib</span>
+        <span class="tag">Git & GitHub</span>
+        <span class="tag">Jupyter Notebook</span>
+        <span class="tag">Google Colab</span>
+        <span class="tag">VS Code</span>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:1rem;">Domains</p>
+      <div class="skills-tags">
+        <span class="tag highlight">Data Science</span>
+        <span class="tag highlight">Machine Learning</span>
+        <span class="tag">Web Development</span>
+        <span class="tag">Algorithmic Problem Solving</span>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:1rem;">Soft Skills</p>
+      <div class="skills-tags">
+        <span class="tag">Problem Solving</span>
+        <span class="tag">Team Leadership</span>
+        <span class="tag">Public Speaking</span>
+        <span class="tag">Event Management</span>
+        <span class="tag">Technical Writing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-label">Achievements & Certifications</div>
+  <h2 class="section-title">Milestones.</h2>
+  <div style="display:flex; flex-direction:column; gap:0.75rem;">
+    <div class="achievement-card">
+      <div class="ach-icon gold">🏆</div>
+      <div>
+        <div class="ach-title">Smart India Hackathon 2025 — Top 130 Teams</div>
+        <div class="ach-desc">Selected among top 130 teams out of 10,000+ submissions nationwide.</div>
+      </div>
+    </div>
+    <div class="achievement-card">
+      <div class="ach-icon gold">🤖</div>
+      <div>
+        <div class="ach-title">Tata — GenAI Powered Data Analytics Job Simulation · Forage, Jun 2026</div>
+        <div class="ach-desc">AI Analytics, AI Strategy, and 12+ associated skills. Credential ID: zeKDvHpFbNtMwRNGQ.</div>
+      </div>
+    </div>
+    <div class="achievement-card">
+      <div class="ach-icon blue">🛡️</div>
+      <div>
+        <div class="ach-title">Introduction to Cybersecurity · Cisco Networking Academy, Dec 2024</div>
+        <div class="ach-desc">Cybersecurity and Network Security fundamentals.</div>
+      </div>
+    </div>
+    <div class="achievement-card">
+      <div class="ach-icon blue">🐍</div>
+      <div>
+        <div class="ach-title">Introduction to Programming Using Python · Kaggle, Jun 2026</div>
+        <div class="ach-desc">Python programming and Object-Oriented Programming (OOP).</div>
+      </div>
+    </div>
+    <div class="achievement-card">
+      <div class="ach-icon purple">🐍</div>
+      <div>
+        <div class="ach-title">Python for Everybody — Coursera / University of Michigan</div>
+        <div class="ach-desc">Foundational Python programming certification from a globally recognised university.</div>
+      </div>
+    </div>
+    <div class="achievement-card">
+      <div class="ach-icon pink">💻</div>
+      <div>
+        <div class="ach-title">50+ Problems on LeetCode & GeeksforGeeks</div>
+        <div class="ach-desc">Solved problems across arrays, strings, and recursion topics.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label" style="justify-content:center;">Contact</div>
+  <h2 class="section-title" style="margin-bottom:1rem;">Let's connect.</h2>
+  <p style="color:var(--muted); max-width:480px; margin:0 auto 0.5rem; font-size:1rem;">
+    Whether it's a collaboration, an internship opportunity, or just a chat about AI and data — I'd love to hear from you.
+  </p>
+  <div class="contact-links">
+    <a href="mailto:ridhikumari516@gmail.com" class="contact-link">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      ridhikumari516@gmail.com
+    </a>
+    <a href="https://linkedin.com/in/ridhikumari516" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+      LinkedIn
+    </a>
+    <a href="https://github.com/ridhi402" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+      GitHub
+    </a>
+    <a href="tel:+919821341780" class="contact-link">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      +91 98213 41780
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>Designed & built with care &nbsp;·&nbsp; <span>Ridhi Kumari</span> © 2025 &nbsp;·&nbsp; IEC College, Greater Noida</p>
+</footer>
+
+</body>
+</html>
